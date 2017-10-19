@@ -1,7 +1,7 @@
 {
-  "name": "file-loader",
-  "version": "1.1.5",
-  "author": "Tobias Koppers @sokra",
+  "name": "file-size-loader",
+  "version": "2.0.0",
+  "author": "Egor Komarov @Odrin",
   "description": "file loader module for webpack",
   "license": "MIT",
   "engines": {
@@ -15,26 +15,26 @@
     "test": "test"
   },
   "dependencies": {
-    "loader-utils": "^1.0.2",
+    "loader-utils": "^1.1.0",
     "schema-utils": "^0.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-jest": "^20.0.3",
-    "babel-plugin-transform-object-rest-spread": "^6.23.0",
-    "babel-polyfill": "^6.23.0",
-    "babel-preset-env": "^1.5.1",
-    "cross-env": "^5.0.0",
-    "del-cli": "^1.0.0",
-    "eslint": "^3.19.0",
-    "eslint-config-webpack": "^1.2.3",
-    "eslint-plugin-import": "^2.3.0",
-    "jest": "^20.0.4",
-    "lint-staged": "^3.6.0",
-    "nsp": "^2.6.3",
+    "babel-cli": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.0",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.9.0",
+    "eslint-config-webpack": "^1.2.5",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.2.1",
+    "lint-staged": "^4.3.0",
+    "nsp": "^2.8.1",
     "pre-commit": "^1.2.2",
-    "standard-version": "^4.0.0",
-    "webpack": "^3.6.0",
+    "standard-version": "^4.2.0",
+    "webpack": "^3.8.1",
     "webpack-defaults": "^1.6.0"
   },
   "peerDependencies": {
@@ -51,7 +51,6 @@
     "prebuild": "npm run clean",
     "release": "standard-version",
     "security": "nsp check",
-    "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collectCoverageFrom='src/**/*.js' --coverage",
     "travis:coverage": "npm run test:coverage -- --runInBand",
@@ -61,17 +60,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/webpack/file-loader.git"
+    "url": "https://github.com/Odrin/file-size-loader.git"
   },
   "bugs": {
-    "url": "https://github.com/webpack/file-loader/issues"
+    "url": "https://github.com/Odrin/file-size-loader/issues"
   },
-  "homepage": "https://github.com/webpack/file-loader",
-  "pre-commit": "lint-staged",
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
-  }
+  "homepage": "https://github.com/Odrin/file-size-loader"
 }

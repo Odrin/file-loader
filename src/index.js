@@ -1,3 +1,4 @@
+import fs from 'fs';
 import path from 'path';
 import loaderUtils from 'loader-utils';
 import validateOptions from 'schema-utils';
@@ -28,6 +29,8 @@ export default function loader(content) {
   }
 
   const filePath = this.resourcePath;
+  const size = fs.statSync(filePath).size;
+  const format = path.extname(filePath);
 
   if (options.useRelativePath) {
     const issuerContext = (this._module && this._module.issuer
@@ -65,8 +68,8 @@ export default function loader(content) {
   if (options.emitFile === undefined || options.emitFile) {
     this.emitFile(outputPath, content);
   }
-  // TODO revert to ES2015 Module export, when new CSS Pipeline is in place
-  return `module.exports = ${publicPath};`;
+
+  return `module.exports = { src:${publicPath}, format: "${format}", size: ${size} };`;
 }
 
 export const raw = true;

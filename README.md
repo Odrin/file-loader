@@ -1,9 +1,6 @@
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
-[![tests][tests]][tests-url]
-[![coverage][cover]][cover-url]
-[![chat][chat]][chat-url]
 
 <div align="center">
   <a href="https://github.com/webpack/webpack">
@@ -11,13 +8,13 @@
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
   <h1>File Loader</h1>
-  <p>Instructs webpack to emit the required object as file and to return its public URL</p>
+  <p>Instructs webpack to emit the required object as file and to return its public URL, file size and format</p>
 </div>
 
 <h2 align="center">Install</h2>
 
 ```bash
-npm install --save-dev file-loader
+npm install --save-dev file-size-loader
 ```
 
 <h2 align="center"><a href="https://webpack.js.org/concepts/loaders">Usage</a></h2>
@@ -37,7 +34,7 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'file-size-loader',
             options: {}  
           }
         ]
@@ -47,10 +44,15 @@ module.exports = {
 }
 ```
 
-Emits `file.png` as file in the output directory and returns the public URL
+Emits `file.png` as file in the output directory and returns object:
 
-```
-"/public/path/0dcbbaa7013869e351f.png"
+```js
+{
+  src: "/public/path/0dcbbaa7013869e351f.png",
+  format: "png",
+  size: 1024 // file size in bytes
+}
+
 ```
 
 <h2 align="center">Options</h2>
@@ -73,7 +75,7 @@ You can configure a custom filename template for your file using the query param
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[path][name].[ext]'
   }  
@@ -85,7 +87,7 @@ You can configure a custom filename template for your file using the query param
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name (file) {
       if (env === 'development') {
@@ -125,7 +127,7 @@ By default, the path and name you specify will output the file in that same dire
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[path][name].[ext]',
     context: ''
@@ -140,7 +142,7 @@ You can specify custom `output` and `public` paths by using `outputPath`, `publi
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[path][name].[ext]',
     publicPath: 'assets/'
@@ -153,7 +155,7 @@ You can specify custom `output` and `public` paths by using `outputPath`, `publi
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[path][name].[ext]',
     outputPath: 'images/'
@@ -167,7 +169,7 @@ You can specify custom `output` and `public` paths by using `outputPath`, `publi
 
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     useRelativePath: process.env.NODE_ENV === "production"
   }
@@ -184,7 +186,7 @@ import img from './file.png'
 
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     emitFile: false
   }  
@@ -207,7 +209,7 @@ import png from 'image.png'
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: 'dirname/[hash].[ext]'
   }  
@@ -221,7 +223,7 @@ dirname/0dcbbaa701328ae351f.png
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[sha512:hash:base64:7].[ext]'
   }  
@@ -239,7 +241,7 @@ import png from 'path/to/file.png'
 **webpack.config.js**
 ```js
 {
-  loader: 'file-loader',
+  loader: 'file-size-loader',
   options: {
     name: '[path][name].[ext]?[hash]'
   }  
@@ -250,58 +252,13 @@ import png from 'path/to/file.png'
 path/to/file.png?e43b20c069c4a01867c31e98cbce33c9
 ```
 
-<h2 align="center">Maintainers</h2>
 
-<table>
-  <tbody>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/bebraw">
-          <img width="150" height="150" src="https://github.com/bebraw.png?v=3&s=150">
-          </br>
-          Juho Vepsäläinen
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/d3viant0ne">
-          <img width="150" height="150" src="https://github.com/d3viant0ne.png?v=3&s=150">
-          </br>
-          Joshua Wiens
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/michael-ciniawsky">
-          <img width="150" height="150" src="https://github.com/michael-ciniawsky.png?v=3&s=150">
-          </br>
-          Michael Ciniawsky
-        </a>
-      </td>
-      <td align="center">
-        <a href="https://github.com/evilebottnawi">
-          <img width="150" height="150" src="https://github.com/evilebottnawi.png?v=3&s=150">
-          </br>
-          Alexander Krasnoyarov
-        </a>
-      </td>
-    </tr>
-  <tbody>
-</table>
+[npm]: https://img.shields.io/npm/v/file-size-loader.svg
+[npm-url]: https://npmjs.com/package/file-size-loader
 
-
-[npm]: https://img.shields.io/npm/v/file-loader.svg
-[npm-url]: https://npmjs.com/package/file-loader
-
-[node]: https://img.shields.io/node/v/file-loader.svg
+[node]: https://img.shields.io/node/v/file-size-loader.svg
 [node-url]: https://nodejs.org
 
-[deps]: https://david-dm.org/webpack-contrib/file-loader.svg
-[deps-url]: https://david-dm.org/webpack-contrib/file-loader
+[deps]: https://david-dm.org/Odrin/file-size-loader.svg
+[deps-url]: https://david-dm.org/Odrin/file-size-loader
 
-[tests]: http://img.shields.io/travis/webpack-contrib/file-loader.svg
-[tests-url]: https://travis-ci.org/webpack-contrib/file-loader
-
-[cover]: https://img.shields.io/codecov/c/github/webpack-contrib/file-loader.svg
-[cover-url]: https://codecov.io/gh/webpack-contrib/file-loader
-
-[chat]: https://badges.gitter.im/webpack/webpack.svg
-[chat-url]: https://gitter.im/webpack/webpack
