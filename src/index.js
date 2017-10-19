@@ -30,7 +30,7 @@ export default function loader(content) {
 
   const filePath = this.resourcePath;
   const size = fs.statSync(filePath).size;
-  const format = path.extname(filePath);
+  const format = path.extname(filePath).replace('.', '');
 
   if (options.useRelativePath) {
     const issuerContext = (this._module && this._module.issuer
