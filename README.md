@@ -7,7 +7,7 @@
     <img width="200" height="200"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>File Loader</h1>
+  <h1>File Size Loader</h1>
   <p>Instructs webpack to emit the required object as file and to return its public URL, file size and format</p>
 </div>
 
