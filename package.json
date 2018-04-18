@@ -1,6 +1,6 @@
 {
   "name": "file-size-loader",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "author": "Egor Komarov @Odrin",
   "description": "file loader module for webpack",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "test": "test"
   },
   "dependencies": {
+    "image-size": "^0.6.2",
     "loader-utils": "^1.1.0",
     "schema-utils": "^0.3.0"
   },

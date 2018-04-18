@@ -2,7 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import loaderUtils from 'loader-utils';
 import validateOptions from 'schema-utils';
+import imageSize from 'image-size';
 import schema from './options.json';
+
+const imgFormats = ['jpg', 'jpeg', 'png'];
 
 export default function loader(content) {
   if (!this.emitFile) throw new Error('File Loader\n\nemitFile is required from module system');
@@ -30,7 +33,7 @@ export default function loader(content) {
 
   const filePath = this.resourcePath;
   const size = fs.statSync(filePath).size;
-  const format = path.extname(filePath).replace('.', '');
+  const format = path.extname(filePath).replace('.', '').toLowerCase();
 
   if (options.useRelativePath) {
     const issuerContext = (this._module && this._module.issuer
@@ -69,7 +72,19 @@ export default function loader(content) {
     this.emitFile(outputPath, content);
   }
 
-  return `module.exports = { src:${publicPath}, format: "${format}", size: ${size} };`;
+  if (options.imageSize && imgFormats.indexOf(format) !== -1) {
+    const dimensions = imageSize(filePath);
+
+    return `module.exports = {
+    src: ${publicPath},
+    format: "${format}",
+    size: ${size},
+    width: ${dimensions.width},
+    height: ${dimensions.height}
+    };`;
+  }
+
+  return `module.exports = { src: ${publicPath}, format: "${format}", size: ${size} };`;
 }
 
 export const raw = true;
