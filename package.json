@@ -1,6 +1,6 @@
 {
   "name": "file-size-loader",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Egor Komarov @Odrin",
   "description": "file loader module for webpack",
   "license": "MIT",

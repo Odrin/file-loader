@@ -14,7 +14,10 @@ export default function loader(content) {
 
   validateOptions(schema, options, 'File Loader');
 
-  const context = options.context || this.options.context;
+  const context =
+    options.context ||
+    this.rootContext ||
+    (this.options && this.options.context);
 
   let url = loaderUtils.interpolateName(this, options.name, {
     context,
@@ -36,10 +39,11 @@ export default function loader(content) {
   const format = path.extname(filePath).replace('.', '').toLowerCase();
 
   if (options.useRelativePath) {
-    const issuerContext = (this._module && this._module.issuer
-      && this._module.issuer.context) || context;
+    const issuer = options.context
+      ? context
+      : this._module && this._module.issuer && this._module.issuer.context;
 
-    const relativeUrl = issuerContext && path.relative(issuerContext, filePath).split(path.sep).join('/');
+    const relativeUrl = issuer && path.relative(issuer, filePath).split(path.sep).join('/');
 
     const relativePath = relativeUrl && `${path.dirname(relativeUrl)}/`;
     // eslint-disable-next-line no-bitwise
